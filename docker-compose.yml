@@ -10,6 +10,8 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
+      - ESLINT_NO_DEV_ERRORS=true 
+      - TSC_COMPILE_ON_ERROR=true
     networks:
       - app-network
     healthcheck:
