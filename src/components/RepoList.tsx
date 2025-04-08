@@ -19,7 +19,7 @@ const RepositoryList: React.FC = () => {
     
     try {
       const response = await searchRepositories(query, pageNum, ITEMS_PER_PAGE);
-      
+      console.log(response);
       if (response.ok) {
         if (pageNum === 1) {
           setRepositories(response.data);
