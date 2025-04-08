@@ -2,9 +2,17 @@
 FROM node:20-alpine AS build
 
 WORKDIR /app
+
+# Copy package files
 COPY package*.json ./
-RUN npm install
+
+# Clean install deps for Linux environment
+RUN npm ci --platform=linux --arch=x64
+
+# Copy rest of the code
 COPY . .
+
+# Build the app
 RUN npm run build
 
 # Production stage

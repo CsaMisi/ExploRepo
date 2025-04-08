@@ -8,8 +8,10 @@ const rootElement = document.getElementById('root');
 
 if (!rootElement) {
   throw new Error("Root element not found");
+  
 }
 const root = createRoot(rootElement);
+console.log(typeof React) //so that the stupid warning disapears, and i wont have to fuck around with docker-compose anymore
 
 function App() {
   return (

@@ -21,15 +21,19 @@ export interface SearchResponse {
   total_count: number;
 }
 
-const API_BASE_URL = '/api/v1'; //set this to the route of the forgejo full URL
+const API_BASE_URL =
+  import.meta.env.VITE_FORGEJO_API_URL || '/api/v1'; // Use VITE_FORGEJO_API_URL for Docker, fallback to /api/v1 for local dev
 
-// Create axios instance with common configuration
+console.log("URL: ", API_BASE_URL);
+
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
+export default apiClient;
 
 // Search repositories with optional query parameters
 export const searchRepositories = async (
@@ -41,8 +45,8 @@ export const searchRepositories = async (
     const response = await apiClient.get('/repos/search', {
       params: {
         q: query,
-        page: page,
-        limit: limit,
+        page,
+        limit,
         sort: 'updated',
         order: 'desc',
       },
@@ -50,14 +54,14 @@ export const searchRepositories = async (
     
     return {
       ok: true,
-      data: response.data.data,
-      total_count: response.data.total_count,
+      data: response.data.data || [], // Ensure we always return an array
+      total_count: response.data.total_count || 0,
     };
   } catch (error) {
     console.error('Error searching repositories:', error);
     return {
       ok: false,
-      data: [],
+      data: [], // Return empty array on error
       total_count: 0,
     };
   }

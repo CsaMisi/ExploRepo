@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   explorepo:
     build:
@@ -12,6 +10,8 @@ services:
       - NODE_ENV=production
       - ESLINT_NO_DEV_ERRORS=true 
       - TSC_COMPILE_ON_ERROR=true
+      - VITE_FORGEJO_API_URL=http://forgejo:3000/api/v1 # Use full URL for Docker
+      - CI=false 
     networks:
       - app-network
     healthcheck:
@@ -28,4 +28,4 @@ services:
 
 networks:
   app-network:
-    driver: bridge
+    external: true

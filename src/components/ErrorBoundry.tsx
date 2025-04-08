@@ -22,6 +22,7 @@ class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // Log to console in development
+    console.log(typeof React) //so that the stupid warning disapears, and i wont have to fuck around with docker-compose anymore
     console.error('Error caught by ErrorBoundary:', error, errorInfo);
     
     // In production, you could send this to your logging service
