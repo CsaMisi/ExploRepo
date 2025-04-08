@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://your-forgejo-instance.com',
+        target: 'http://localhost:3000/',
         changeOrigin: true,
         secure: false,
       }

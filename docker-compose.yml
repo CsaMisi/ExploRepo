@@ -1,15 +1,28 @@
 version: '3.8'
 
 services:
-  forgejo-explorer:
+  explorepo:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "80:80"
-    restart: unless-stopped
+    restart: always
+    environment:
+      - NODE_ENV=production
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
 
 networks:
   app-network:

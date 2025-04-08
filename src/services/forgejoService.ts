@@ -21,7 +21,7 @@ export interface SearchResponse {
   total_count: number;
 }
 
-const API_BASE_URL = ''; //set this to the route of the forgejo full URL
+const API_BASE_URL = '/api/v1'; //set this to the route of the forgejo full URL
 
 // Create axios instance with common configuration
 const apiClient = axios.create({
