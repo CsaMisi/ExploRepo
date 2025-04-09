@@ -24,7 +24,7 @@ export interface SearchResponse {
 const API_BASE_URL =
   import.meta.env.VITE_FORGEJO_API_URL || '/api/v1'; // Use VITE_FORGEJO_API_URL for Docker, fallback to /api/v1 for local dev
 
-console.log("URL: ", API_BASE_URL);
+
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -32,6 +32,8 @@ const apiClient = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+//console.log("URL: " apiClient.)
 
 export default apiClient;
 
