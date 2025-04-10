@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-/* ...existing styles... */
-
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #cbd5e0 #f7fafc;
@@ -25,7 +23,6 @@
   padding-right: 8px;
 }
 
-/* Add basic markdown styles */
 .prose pre {
   background: #f3f4f6;
   padding: 0.5rem;

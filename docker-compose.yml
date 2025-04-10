@@ -11,7 +11,7 @@ services:
       - NODE_ENV=production
       - ESLINT_NO_DEV_ERRORS=true 
       - TSC_COMPILE_ON_ERROR=true
-      - VITE_FORGEJO_API_URL=/api/v1  # Change this to use nginx proxy
+      - VITE_FORGEJO_API_URL=/api/v1  
       - CI=false 
     networks:
       - app-network

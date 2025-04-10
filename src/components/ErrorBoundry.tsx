@@ -21,13 +21,12 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Log to console in development
     console.log(typeof React) //so that the stupid warning disapears, and i wont have to fuck around with docker-compose anymore
     console.error('Error caught by ErrorBoundary:', error, errorInfo);
     
     // In production, you could send this to your logging service
     if (process.env.NODE_ENV === 'production') {
-      // Example logging service call (replace with your actual logging service)
+      // replace with actual logging service, was too lazy to set one up
       this.logErrorToService(error, errorInfo);
     }
   }
@@ -41,15 +40,10 @@ class ErrorBoundary extends Component<Props, State> {
       userAgent: navigator.userAgent,
       timestamp: new Date().toISOString()
     });
-    
-    // You could use a service like Sentry, LogRocket, etc.
-    // Example with Sentry would be:
-    // Sentry.captureException(error, { extra: { componentStack: errorInfo.componentStack } });
   }
 
   render() {
     if (this.state.hasError) {
-      // Fallback UI
       return this.props.fallback || (
         <div className="p-6 bg-red-50 border border-red-200 rounded-lg">
           <h2 className="text-lg font-semibold text-red-700 mb-2">Something went wrong</h2>
